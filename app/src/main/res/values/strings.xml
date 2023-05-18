@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Mobile_Labs_20521271</string>
+    <string name="app_name">Lab4 LuongHa</string>
+    <string name="dont_have_account">Don\'t have an account? <b>Sign Up</b>.</string>
+    <string name="back_to_login">Back to ? <b>Login</b></string>
 </resources>
