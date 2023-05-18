@@ -1,18 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:text="Row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:background="#EF5350"/>
+            <TextView
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:background="#FFEE58"/>
+            <TextView
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:background="#9CCC65"/>
+        </LinearLayout>
+        <TextView
+            android:text="Column"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:background="#EF5350"/>
+            <TextView
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:background="#FFEE58"/>
+            <TextView
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:background="#9CCC65"/>
+        </LinearLayout>
+        <TextView
+            android:text="ListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:background="#EF5350"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:background="#FFEE58"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:background="#9CCC65"/>
+        </LinearLayout>
+        <TextView
+            android:text="GridView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:columnCount="2"
+            android:orientation="horizontal"
+            android:rowCount="2"
+            android:layout_margin="10pt"
+            >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="600px"
+                android:layout_height="600px"
+                android:layout_margin="2pt"
+                android:padding="5pt"
+                android:background="#6DE3D7"
+                android:text="He'd have you all unravel at the" />
+
+            <TextView
+                android:layout_width="600px"
+                android:layout_height="600px"
+                android:layout_margin="2pt"
+                android:padding="5pt"
+                android:background="#32D8C8"
+                android:text="Heed not the rabble" />
+
+            <TextView
+                android:layout_width="600px"
+                android:layout_height="600px"
+                android:layout_margin="2pt"
+                android:padding="5pt"
+                android:background="#25A598"
+                android:text="Sound of screams but the" />
+
+            <TextView
+                android:layout_width="600px"
+                android:layout_height="600px"
+                android:layout_margin="2pt"
+                android:padding="5pt"
+                android:background="#1F887E"
+                android:text="Who scream" />
+        </GridLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>
