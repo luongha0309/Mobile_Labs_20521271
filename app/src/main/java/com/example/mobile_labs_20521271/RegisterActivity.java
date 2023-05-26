@@ -41,6 +41,7 @@ public  class RegisterActivity extends AppCompatActivity {
     EditText fullnameInput, phoneInput, usernameInput, passwordInput;
     TextView loginLink;
     FirebaseAuth mAuth;
+    String username;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @SuppressLint("MissingInflatedId")
@@ -56,7 +57,6 @@ public  class RegisterActivity extends AppCompatActivity {
         loginLink = findViewById(R.id.login_link);
         fullnameInput = findViewById(R.id.full_name);
         phoneInput = findViewById(R.id.phone);
-
 
 
         loginLink.setOnClickListener(new View.OnClickListener() {
@@ -83,22 +83,37 @@ public  class RegisterActivity extends AppCompatActivity {
                 fullName = fullnameInput.getText().toString();
                 phoneNumber = phoneInput.getText().toString();
 
-                if(TextUtils.isEmpty(userName)){
-                    Toast.makeText(RegisterActivity.this, "Enter username", Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(fullName)){
+                    Toast.makeText(RegisterActivity.this, "Please enter full name!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                if(TextUtils.isEmpty(phoneNumber)){
+                    Toast.makeText(RegisterActivity.this, "Please enter your phone number!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(userName)){
+                    Toast.makeText(RegisterActivity.this, "Please enter username!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(TextUtils.isEmpty(passWord)){
-                    Toast.makeText(RegisterActivity.this, "Enter and confirm your password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Please enter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!Patterns.EMAIL_ADDRESS.matcher(userName).matches()) {
                     usernameInput.setError("Invalid Email");
                     usernameInput.setFocusable(true);
-                } else if (passWord.length() < 6) {
-                    passwordInput.setError("Length Must be greater than 6 character");
+                }
+                else if (passWord.length() < 6) {
+                    passwordInput.setError("Password length must be greater than 6 character");
                     passwordInput.setFocusable(true);
-                } else {
+                }
+                else if(phoneNumber.length() < 10 || phoneNumber.length() > 11) {
+                    phoneInput.setError("Phone number is invalid. Please enter again!");
+                    phoneInput.setFocusable(true);
+                }
+                else {
                     //Neu nhu khong co loi thi thuc hien ham luu du lieu
                     registerUser(userName, passWord, fullName, phoneNumber);
                 }
