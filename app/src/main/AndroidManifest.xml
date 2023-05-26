@@ -14,11 +14,9 @@
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:exported="false"
-            android:label="Home">
+            android:exported="false">
         </activity>
         <activity
-            android:label="Login"
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -28,7 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="Register"
             android:name=".RegisterActivity"
             android:exported="false">
         </activity>

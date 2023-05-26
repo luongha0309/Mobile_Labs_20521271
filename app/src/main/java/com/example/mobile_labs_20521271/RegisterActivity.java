@@ -1,5 +1,6 @@
 package com.example.mobile_labs_20521271;
 
+import static android.app.PendingIntent.getActivity;
 import static android.content.ContentValues.TAG;
 
 import android.annotation.SuppressLint;
@@ -49,6 +50,12 @@ public  class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        AppCompatActivity activity = (AppCompatActivity) RegisterActivity.this;
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().hide();
+        }
+
 
         registerButton = findViewById(R.id.btnRegister);
         usernameInput = findViewById(R.id.username);

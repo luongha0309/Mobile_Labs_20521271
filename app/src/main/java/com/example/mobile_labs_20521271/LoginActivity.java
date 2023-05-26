@@ -34,6 +34,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        AppCompatActivity activity = (AppCompatActivity) LoginActivity.this;
+        if (activity != null && activity.getSupportActionBar() != null) {
+            activity.getSupportActionBar().hide();
+        }
+
         FirebaseApp.initializeApp(this);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
