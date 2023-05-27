@@ -51,11 +51,11 @@ public  class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //An thanh tieu de
         AppCompatActivity activity = (AppCompatActivity) RegisterActivity.this;
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().hide();
         }
-
 
         registerButton = findViewById(R.id.btnRegister);
         usernameInput = findViewById(R.id.username);
@@ -90,6 +90,7 @@ public  class RegisterActivity extends AppCompatActivity {
                 fullName = fullnameInput.getText().toString();
                 phoneNumber = phoneInput.getText().toString();
 
+                //Kiem tra xem thong tin co bi trong hay khong
                 if(TextUtils.isEmpty(fullName)){
                     Toast.makeText(RegisterActivity.this, "Please enter full name!", Toast.LENGTH_SHORT).show();
                     return;
@@ -108,16 +109,18 @@ public  class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Please enter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!Patterns.EMAIL_ADDRESS.matcher(userName).matches()) {
-                    usernameInput.setError("Invalid Email");
+
+                //Kiem tra cac loi
+                if (!Patterns.EMAIL_ADDRESS.matcher(userName).matches()) { //Kiem tra xem co nhap dung @gmail.com khong
+                    usernameInput.setError("You have entered an invalid email, please try again!");
                     usernameInput.setFocusable(true);
                 }
-                else if (passWord.length() < 6) {
-                    passwordInput.setError("Password length must be greater than 6 character");
+                else if (passWord.length() < 6) { //Kiem tra xem mat khau be hon 6 ki tu hay khong
+                    passwordInput.setError("Password length must be greater than 6 character!");
                     passwordInput.setFocusable(true);
                 }
-                else if(phoneNumber.length() < 10 || phoneNumber.length() > 11) {
-                    phoneInput.setError("Phone number is invalid. Please enter again!");
+                else if(phoneNumber.length() < 10 || phoneNumber.length() > 11) { //Kiem tra xem so dien thoai co dung hay khong
+                    phoneInput.setError("Phone number is invalid, please enter again!");
                     phoneInput.setFocusable(true);
                 }
                 else {

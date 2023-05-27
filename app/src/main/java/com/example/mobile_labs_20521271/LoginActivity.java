@@ -28,13 +28,13 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     TextView registerLink;
     FirebaseAuth firebaseAuth;
-    FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //An thanh tieu de
         AppCompatActivity activity = (AppCompatActivity) LoginActivity.this;
         if (activity != null && activity.getSupportActionBar() != null) {
             activity.getSupportActionBar().hide();
@@ -46,12 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         registerLink = findViewById(R.id.register_link);
         loginBtn = findViewById(R.id.btnLogin);
         firebaseAuth = FirebaseAuth.getInstance();
-
-        //Kiem tra xem tai khoan da duoc dang nhap hay chua
-        if (firebaseAuth != null) {
-            currentUser = firebaseAuth.getCurrentUser();
-        }
-
 
         registerLink.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,41 +60,39 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String inUsername, inPassword;
+                String userName, passWord;
 
-                inUsername = username.getText().toString();
-                inPassword = password.getText().toString();
+                userName = username.getText().toString();
+                passWord = password.getText().toString();
 
-                if(TextUtils.isEmpty(inUsername)){
-                    Toast.makeText(LoginActivity.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                //Kiem tra xem neu nhu Username hay Password co trong hay khong
+                if(TextUtils.isEmpty(userName)){
+                    Toast.makeText(LoginActivity.this, "Plese enter your email!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(TextUtils.isEmpty(inPassword)){
-                    Toast.makeText(LoginActivity.this, "Enter your password", Toast.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(passWord)){
+                    Toast.makeText(LoginActivity.this, "Password cannot be empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                firebaseAuth.signInWithEmailAndPassword(inUsername, inPassword)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                //Sau khi khong co loi thi thuc hien dang nhap bang Email va Password
+                firebaseAuth.signInWithEmailAndPassword(userName, passWord).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(LoginActivity.this, "Login Successfully.", Toast.LENGTH_SHORT).show();
-
-
+                                    Toast.makeText(LoginActivity.this, "Login successfully!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     startActivity(intent);
                                     finish();
 
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Incorrect username or password, please enter again!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
-
             }
         });
     }

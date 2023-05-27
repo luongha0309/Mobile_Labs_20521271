@@ -28,26 +28,22 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference reference;
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+       //Tao Title Home va can giua
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.drawable.title_home);
-        getSupportActionBar().setTitle("Home");
-
-
 
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         fullnameDisplay = findViewById(R.id.display_name);
         logOut = findViewById(R.id.btnLogout);
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
 
         //Truy van du lieu tu Realtime Firebase
@@ -56,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    String fullName = "" + dataSnapshot1.child("name").getValue();
+                    String fullName = dataSnapshot1.child("name").getValue().toString();
                     fullnameDisplay.setText(fullName);
                 }
             }
@@ -71,12 +67,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-
                 finish();
-
                 Toast.makeText(MainActivity.this, "You have been signed out.", Toast.LENGTH_SHORT).show();
             }
         });
